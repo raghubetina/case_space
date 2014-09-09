@@ -8,4 +8,6 @@ class Photo < ActiveRecord::Base
   has_many :tags, :through => :taggings
 
   validates :user, :presence => true
+
+  mount_uploader :image, ImageUploader
 end
