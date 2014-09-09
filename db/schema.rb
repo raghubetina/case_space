@@ -11,27 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140909000415) do
-
-  create_table "case_photos", force: true do |t|
-    t.integer  "photo_id"
-    t.integer  "case_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "case_photos", ["case_id"], name: "index_case_photos_on_case_id"
-  add_index "case_photos", ["photo_id"], name: "index_case_photos_on_photo_id"
-
-  create_table "cases", force: true do |t|
-    t.string   "title"
-    t.text     "note"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "cases", ["user_id"], name: "index_cases_on_user_id"
+ActiveRecord::Schema.define(version: 20140909001558) do
 
   create_table "photos", force: true do |t|
     t.text     "note"
@@ -41,6 +21,26 @@ ActiveRecord::Schema.define(version: 20140909000415) do
   end
 
   add_index "photos", ["user_id"], name: "index_photos_on_user_id"
+
+  create_table "project_photos", force: true do |t|
+    t.integer  "photo_id"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "project_photos", ["photo_id"], name: "index_project_photos_on_photo_id"
+  add_index "project_photos", ["project_id"], name: "index_project_photos_on_project_id"
+
+  create_table "projects", force: true do |t|
+    t.string   "title"
+    t.text     "note"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "projects", ["user_id"], name: "index_projects_on_user_id"
 
   create_table "taggings", force: true do |t|
     t.integer  "photo_id"
