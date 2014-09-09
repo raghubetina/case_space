@@ -1,6 +1,8 @@
 class PhotosController < ApplicationController
   before_action :set_photo, only: [:show, :edit, :update, :destroy]
 
+  before_action :authorize_user, only: [:show, :edit, :update, :destroy]
+
   # GET /photos
   # GET /photos.json
   def index
@@ -63,6 +65,12 @@ class PhotosController < ApplicationController
   end
 
   private
+    def authorize_user
+      unless @photo.user == current_user
+        redirect_to root_url, :alert => "You are not authorized for that."
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_photo
       @photo = Photo.find(params[:id])

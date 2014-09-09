@@ -1,6 +1,8 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
+  before_action :authorize_user, only: [:show, :edit, :update, :destroy]
+
   # GET /projects
   # GET /projects.json
   def index
@@ -63,6 +65,12 @@ class ProjectsController < ApplicationController
   end
 
   private
+    def authorize_user
+      unless @project.user == current_user
+        redirect_to root_url, :alert => "You are not authorized for that."
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_project
       @project = Project.find(params[:id])
