@@ -3,4 +3,7 @@ class Project < ActiveRecord::Base
 
   has_many :project_photos, :dependent => :destroy
   has_many :photos, :through => :project_photos
+
+  validates :user, :presence => true
+  validates :title, :presence => true
 end

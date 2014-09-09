@@ -6,4 +6,6 @@ class Photo < ActiveRecord::Base
 
   has_many :taggings, :dependent => :destroy
   has_many :tags, :through => :taggings
+
+  validates :user, :presence => true
 end

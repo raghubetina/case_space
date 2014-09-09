@@ -7,4 +7,6 @@ class User < ActiveRecord::Base
   has_many :projects
   has_many :photos
   has_many :tags, :through => :photos
+
+  validates :name, :presence => true
 end
