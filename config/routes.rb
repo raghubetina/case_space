@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :collections
 
-  root 'projects#index'
+  root 'photos#index'
 
   devise_for :users
   resources :tags
