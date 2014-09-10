@@ -16,3 +16,14 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.spacer {
+  margin-top: 20px; /* define margin as you see fit */
+}
+
+.thumbnail .section {
+  margin-bottom: 5px;
+  height: 70px;
+  width: 100%;
+  overflow: scroll;
+}
