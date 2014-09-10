@@ -1,7 +1,16 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+user = User.create :email => "nupebasu@gmail.com",
+                   :password => "11111111",
+                   :password_confirmation => "11111111",
+                   :name => "Nupe Basu"
+
+require 'open-uri'
+
+categories = JSON.parse(open("http://localhost:4000/categories.json").read)
+body_parts = JSON.parse(open("http://localhost:4000/body_parts.json").read)
+studies = JSON.parse(open("http://localhost:4000/studies.json").read)
+
+studies.each do |study|
+
+end
