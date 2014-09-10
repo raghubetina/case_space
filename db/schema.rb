@@ -55,9 +55,13 @@ ActiveRecord::Schema.define(version: 20140909213243) do
 
   create_table "tags", force: true do |t|
     t.string   "name"
+    t.string   "sanitized_name"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "tags", ["user_id"], name: "index_tags_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
