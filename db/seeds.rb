@@ -15,13 +15,7 @@ photo_hashes.each do |photo_hash|
   photo.image = image
   photo.save
 
-  photo_hash["tags"].each do |tag_name|
-    tag = user.tags.find_by :sanitized_name => tag_name.squish.downcase
-    if tag.blank?
-      tag = user.tags.create :name => tag_name
-    end
-    photo.taggings.create :tag => tag
-  end
+  user.tag(photo, :with => photo_hash["tags"], :on => :tags)
 end
 
 puts "There are now #{Photo.count} photos in the database."

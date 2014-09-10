@@ -6,9 +6,10 @@ class User < ActiveRecord::Base
 
   has_many :collections
   has_many :photos
-  has_many :tags
 
   validates :name, :presence => true
 
   mount_uploader :avatar, AvatarUploader
+
+  acts_as_tagger
 end
