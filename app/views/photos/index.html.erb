@@ -20,12 +20,15 @@
           <div class="section">
             <ul class="list-unstyled">
               <% photo.tags.each do |tag| %>
-                <%= link_to tag.name, tag, :class => "badge badge-primary" %>
+                <%= link_to tag.name, tag, :class => "label label-default" %>
               <% end %>
             </ul>
           </div>
-          <div>
-            <%= link_to photo, :method => "delete", :data => {:confirm => "Are you sure you want to delete this photo?"}, :class => "btn btn-danger btn-sm btn-block"  do %>
+          <div class="btn-group btn-group-justified">
+            <%= link_to edit_photo_path(photo), :class => "btn btn-sm btn-warning" do %>
+              <span class="glyphicon glyphicon-edit"></span>
+            <% end %>
+            <%= link_to photo, :method => "delete", :data => { :confirm => "Are you sure you want to delete this photo?" }, :class => "btn btn-sm btn-danger" do %>
               <span class="glyphicon glyphicon-trash"></span>
             <% end %>
           </div>
