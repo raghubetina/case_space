@@ -7,6 +7,7 @@ class TagsController < ApplicationController
   # GET /tags.json
   def index
     @tags = current_user.owned_tags
+    @tags = Photo.tag_counts_on(:tags).order(:name)
   end
 
   # GET /tags/1

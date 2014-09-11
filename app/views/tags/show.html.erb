@@ -1,9 +1,10 @@
-<p id="notice"><%= notice %></p>
+<div class="page-header">
+  <h1>
+    <%= link_to :back, :class => "btn btn-default" do %>
+      <span class="glyphicon glyphicon-chevron-left"></span>
+    <% end %>
+    <%= @tag %>
+  </h1>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @tag.name %>
-</p>
-
-<%= link_to 'Edit', edit_tag_path(@tag) %> |
-<%= link_to 'Back', tags_path %>
+<%= render Photo.tagged_with(@tag, :on => :tags, :owned_by => current_user) %>

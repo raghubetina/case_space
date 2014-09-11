@@ -31,6 +31,7 @@ class PhotosController < ApplicationController
 
     respond_to do |format|
       if @photo.save
+        current_user.tag(@photo, :with => params[:photo][:tag_names], :on => :tags)
         format.html { redirect_to @photo, notice: 'Photo was successfully created.' }
         format.json { render :show, status: :created, location: @photo }
       else
@@ -45,6 +46,7 @@ class PhotosController < ApplicationController
   def update
     respond_to do |format|
       if @photo.update(photo_params)
+        current_user.tag(@photo, :with => params[:photo][:tag_names], :on => :tags)
         format.html { redirect_to @photo, notice: 'Photo was successfully updated.' }
         format.json { render :show, status: :ok, location: @photo }
       else
@@ -78,6 +80,6 @@ class PhotosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def photo_params
-      params.require(:photo).permit(:note, :image, :tag_list)
+      params.require(:photo).permit(:note, :image, :tag_names)
     end
 end
