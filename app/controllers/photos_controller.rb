@@ -31,7 +31,9 @@ class PhotosController < ApplicationController
 
     respond_to do |format|
       if @photo.save
-        current_user.tag(@photo, :with => params[:photo][:tag_names], :on => :tags)
+        new_tags = params[:new_tags].split(',').map(&:strip)
+        tags = new_tags + params[:photo][:tag_names]
+        current_user.tag(@photo, :with => tags, :on => :tags)
         format.html { redirect_to @photo, notice: 'Photo was successfully created.' }
         format.json { render :show, status: :created, location: @photo }
       else
@@ -46,7 +48,9 @@ class PhotosController < ApplicationController
   def update
     respond_to do |format|
       if @photo.update(photo_params)
-        current_user.tag(@photo, :with => params[:photo][:tag_names], :on => :tags)
+        new_tags = params[:new_tags].split(',').map(&:strip)
+        tags = new_tags + params[:photo][:tag_names]
+        current_user.tag(@photo, :with => tags, :on => :tags)
         format.html { redirect_to @photo, notice: 'Photo was successfully updated.' }
         format.json { render :show, status: :ok, location: @photo }
       else

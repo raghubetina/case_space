@@ -9,7 +9,7 @@
       </div>
       <div class="section">
         <ul class="list-unstyled">
-          <% photo.tags.each do |tag| %>
+          <% photo.owner_tags_on(current_user, :tags).each do |tag| %>
             <%= link_to tag, tag_path(tag), :class => "label label-default" %>
           <% end %>
         </ul>

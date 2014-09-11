@@ -29,6 +29,11 @@
     <label class="col-sm-2 control-label">Tags</label>
     <div class="col-sm-10">
       <div class="row">
+        <div class="col-sm-12">
+          <%= text_field_tag :new_tags, nil, :class => "form-control", :placeholder => "New tags (comma separated)" %>
+        </div>
+      </div>
+      <div class="row">
         <% existing_tags = @photo.tags.order(:name) %>
         <% other_tags = current_user.owned_tags.order(:name) - existing_tags  %>
         <% tag_collection = existing_tags + other_tags %>
