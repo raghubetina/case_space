@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'acts-as-taggable-on'
 
 gem 'carrierwave'
+gem 'fog'
 gem 'mini_magick'
 
 gem 'devise'
@@ -12,9 +13,17 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.5'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'rails', '4.1.6'
+
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end
+
+group :development do
+  # Use sqlite3 as the database for Active Record
+  gem 'sqlite3'
+end
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets

@@ -10,12 +10,15 @@ end
 photo_hashes = JSON.parse(File.open(Rails.root.join("lib", "assets", "seed_data.json").to_s).read)
 
 photo_hashes.each do |photo_hash|
+
   photo = user.photos.build photo_hash.slice("note")
+  puts Rails.root.join("lib", "assets", "seed_images", photo_hash["image_filename"]).to_s
   image = File.open(Rails.root.join("lib", "assets", "seed_images", photo_hash["image_filename"]).to_s)
   photo.image = image
   photo.save
 
   user.tag(photo, :with => photo_hash["tags"], :on => :tags)
+
 end
 
 puts "There are now #{Photo.count} photos in the database."
